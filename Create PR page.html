@@ -126,6 +126,7 @@
 
 				</fieldset>
 			</div>
+
 			<div class="Billing">
 				<fieldset>
 				<legend>Billing Data</legend>
@@ -154,10 +155,15 @@
 				</fieldset>
 			</div>
 
-
 			<div class="Delivery">
 				<fieldset>
 				<legend>Delivery Data</legend>
+
+				<label for="rdbDelAdd">Deliver to:</label>
+					<input type="radio" id="rD3" name="rdbDelAdd" value="D3" title="D3" checked> D3 
+					<input type="radio" id="rOther" name="rdbDelAdd" value="Other" title="Other"> Other
+					<br>
+					<br>
 					Carrier: <Select>
 						<option value="FedEx">FedEx</option>
 						<option value="UPS">UPS</option>
@@ -185,23 +191,25 @@
 						<br>
 						<br>
 	<!-- if any other place than D3 show the below-->
-						<label for="Street Address">Street Address:</label>
-						<input type="text" name="Street Address" title="Street Address">
-						<br>
-						<br>
+						<div class="DeliveryAddress">
+							<label for="Street Address">Street Address:</label>
+							<input type="text" name="Street Address" title="Street Address">
+							<br>
+							<br>
 
-						<label for="Delivery City">City:</label>
-						<input type="text" name="Delivery City" title="Delivery City">
-						<br>
-						<br>
+							<label for="Delivery City">City:</label>
+							<input type="text" name="Delivery City" title="Delivery City">
+							<br>
+							<br>
 
-						<label for="Delivery Zip">Zip:</label>
-						<input type="text" name="Delivery Zip" title="Delivery Zip">
-						<br>
-						<br>
+							<label for="Delivery Zip">Zip:</label>
+							<input type="text" name="Delivery Zip" title="Delivery Zip">
+							<br>
+							<br>
 
-						<label for="Delivery Phone">Phone:</label>
-						<input type="text" name="Delivery Phone" title="Delivery Phone">
+							<label for="Delivery Phone">Phone:</label>
+							<input type="text" name="Delivery Phone" title="Delivery Phone">
+						</div>
 				</fieldset>
 			</div>
 
@@ -291,6 +299,8 @@
 		setupLineTotalEvt();
 		$(".accounting").hide();
 		$(".managment").hide();
+		$(".DeliveryAddress").hide();
+		setupRadioBtnClick();
 });
 
 //------------------------------------------------------------------------------
@@ -305,13 +315,23 @@ function setupLineTotalEvt(){
 	qty.on("change",calc_line_total);
 	price.on("change", calc_line_total);
 	lineTotal.on("change",calc_pr_total);
+}
+
+//------------------------------------------------------------------------------
+// set radio button click event
+//------------------------------------------------------------------------------
+function setupRadioBtnClick(){
+
+$("input[name='rdbDelAdd']").change(showAddress);
+};
+
 
 // Josh not sure what this does
-	var items = [
-	{partNum: 1,description: 2,Qty: 3,Price: 4},
-	{partNum: "partNumq",description: 2,Qty: 3,Price: 4},
-	];
-	}
+//	var items = [
+//	{partNum: 1,description: 2,Qty: 3,Price: 4},
+//	{partNum: "partNumq",description: 2,Qty: 3,Price: 4},
+//	];
+//	}
 
 // Josh dont know what this does
 //create table
@@ -321,6 +341,19 @@ function setupLineTotalEvt(){
 		lineItem.addClass("lineItem");
 	});
 	}
+
+//------------------------------------------------------------------------------
+// show or hide the delivery address fields based on radio button
+//------------------------------------------------------------------------------
+function showAddress(){
+	var showDelAdd = (document.getElementById('rD3').checked);
+	if (showDelAdd){
+		$(".deliveryAddress").hide();
+	} else {
+		$(".deliveryAddress").show();
+	}	
+}
+
 
 //------------------------------------------------------------------------------
 // Update line item numbers
