@@ -13,26 +13,13 @@
 		<p>
 		TO DO:
 		<ul>
-			<li style="color:red;"><s> make JS for adding more items with add button</s></li>
-				<ul>
-					<li> <s style="color:red;">first click on add button reloads page with submit items</s></li>
-				</ul>
-				<li><s style="color:red;"> when delete need to reorder line item numbers </s></li>
-			<li><s style="color:red;"> make JS for totaling cost when qty and price CHANGE</s></li>
-				<ul>
-						<li> <s style="color:red;">works for first entry not 2nd</s></li>
-						<li><s style="color:red;"> round line total </s></li>
-				</ul>
-				<li> remove the selects for upper managment do an apend to add them when pr total dictates </li>
 			<li> add JS to read approvales from DB and populate drop downs</li>
 			<li> process page</li>
 			<ul>
-				<li> add code to validate entries are filled out </li>
 				<li> write to DB </li>
 				<li> add code to send email to first approver and submitter when submitted </li>
 				<li> alert that states the PR Number and the next approver </li>
 			</ul>
-			<li style="color:red;"> <s> add element for selecting first approvales </s></li>
 		</ul>
 	<hr>
 	<Form>
@@ -50,12 +37,12 @@
 -->
 <!-- auto fill requestors Name from ldap -->
 					<label for="Requestor">Requestor:</label>
-					<input type="text" name="Requestor" title="Requestors Name">
+					<input type="text" name="Requestor" title="Requestors Name" required>
 					<br>
 					<br>
 <!-- auto fill todays date -->
 					<label for="TodaysDate">Todays Date:</label>
-					<input type="Date" name="TodaysDate" title="Todays date">
+					<input type="Date" name="TodaysDate" title="Todays date" required>
 				</fieldset>
 			</div>
 
@@ -63,12 +50,12 @@
 				<fieldset>
 					<legend> Vendor Data </legend>
 					<label for="QuoteNum">Quote Number:</label>
-					<input type="text" name="QuoteNum" title="Vendor Quote Number">
+					<input type="text" name="QuoteNum" title="Vendor Quote Number" required>
 					<br>
 					<br>
 
 					<label for="VendName">Name:</label>
-					<input type="text" name="VendName" title="Vendor Name">
+					<input type="text" name="VendName" title="Vendor Name" required>
 					<br>
 					<br>
 
@@ -110,13 +97,13 @@
 
 <!--		Vendor Contact: <input type="text" name="vendor contact" title="Vendor Contact"><br><br> -->
 					<label for="VendContact">Contact:</label>
-					<input type="text" name="VendContact" title="Vendor Contact">
+					<input type="text" name="VendContact" title="Vendor Contact" required>
 					<br>
 					<br>
 
 <!--		Vendor Email: <input type="email" name="vendor email" title="Vendor email"><br><br> -->
 					<label for="VendEmail">Email:</label>
-					<input type="email" name="VendEmail" title="Vendor Email"> <!-- <br><br><br> -->
+					<input type="email" name="VendEmail" title="Vendor Email" required>
 					<br>
 					<br>
 <!--		Vendor Email: <input type="email" name="vendor email" title="Vendor email"><br><br> -->
@@ -132,26 +119,27 @@
 				<legend>Billing Data</legend>
 <!--		Billable selection -->
 					<label for="billable">Billable:</label>
-					<input type="radio" name="billable" value="one" title="billable"> Yes <input type="radio" name="billable" value="Zero" title="billable"> No
+					<input type="radio" name="billable" value="one" title="billable" checked> Yes 
+					<input type="radio" name="billable" value="Zero" title="billable"> No
 					<br>
 					<br>
 <!--  must validate that one of them is selected -->
 
 <!--		Customer Name -->
 					<label for="Customer Name">Customer Name:</label>
-					<input type="text" name="Customer Name" title="Customer Name">
+					<input type="text" name="Customer Name" title="Customer Name" required>
 					<br>
 					<br>
 
 <!--		Project Name -->
 					<label for="Project Name">Project Name:</label>
-					<input type="text" name="Project Name" title="Project Name">
+					<input type="text" name="Project Name" title="Project Name" required>
 					<br>
 					<br>
 
 <!--		Account Number -->
 					<label for="Account Number">Account Number:</label>
-					<input type="text" name="Account Number" title="Account Number" placeholder="00C-011" maxlength="7">
+					<input type="text" name="Account Number" title="Account Number" placeholder="00C-011" maxlength="7" required>
 				</fieldset>
 			</div>
 
@@ -182,12 +170,12 @@
 					<br>
 					<br>
 						<label for="Delivery Date">Delivery Date:</label>
-						<input type="date" name="Delivery Date" title="Delivery Date">
+						<input type="date" name="Delivery Date" title="Delivery Date" required>
 						<br>
 						<br>
 
 						<label for="Attention">Attention:</label>
-						<input type="text" name="Attention" title="Attention">
+						<input type="text" name="Attention" title="Attention" required>
 						<br>
 						<br>
 	<!-- if any other place than D3 show the below-->
@@ -219,6 +207,7 @@
 					<label for="projectManager"> Project Manager:</label>
 					<select name="projectManager">
 <!-- Would like to ready this from a file or the DB -->
+						<option value="PM">PM</option>
 						<option value="Jerome B.">Jerome B.</option>
 						<option value="Jason E.">Jason E.</option>
 						<option value="Andy S.">Andy S.</option>
@@ -284,7 +273,8 @@
 			</tr>
 
 </table>
-
+<br>
+<input type="submit" value="Submit">
 	</form>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.js"> </script>
